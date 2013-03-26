@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 __name    = "Bullshit filter"
-__version = "1.0.0"
+__version = "1.0.1"
 __date    = "26.03.2013"
 __author  = "Bystroushaak"
 __email   = "bystrousak@kitakitsune.org"
@@ -185,7 +185,7 @@ def findLargestTextBlock(s, blocknum = 2):
 	return str(root.getContent())
 
 
-def filterBullshit(s):
+def filterBullshit(s, template = True):
 	"""
 	Filter bullshit from webpages.
 
@@ -227,10 +227,11 @@ def filterBullshit(s):
 		content = str(containers[0][1]) # take container which contains most of <p> blocks
 
 	# apply html template
-	content = HTML_TEMPLATE                    \
-				.replace("{title}", title)     \
-				.replace("{charset}", charset) \
-				.replace("{content}", content)
+	if template:
+		content = HTML_TEMPLATE                    \
+		                       .replace("{title}", title)     \
+		                       .replace("{charset}", charset) \
+		                       .replace("{content}", content)
 
 	return content
 
