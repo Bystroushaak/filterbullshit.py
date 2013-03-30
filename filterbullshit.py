@@ -224,7 +224,8 @@ def filterBullshit(s, template = True):
 		# if all containers contains same amount of <p> tags, try to find largest text block
 		content = findLargestTextBlock(dom)
 	else:
-		content = str(containers[0][1]) # take container which contains most of <p> blocks
+		if len(containers) > 0:
+			content = str(containers[0][1]) # take container which contains most of <p> blocks
 
 	# apply html template
 	if template:
